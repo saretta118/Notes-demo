@@ -7,19 +7,43 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct MainTabView: View {
     var note: Note
     @State private var selectedTab = 0
+    var descriptionText: String
+    
+    var noteBody: String
+    
     
     var body: some View {
-        TabView {
-            Text("Hola")
+            TabView {
+                NoteTabView(descriptionText: descriptionText,noteBody: noteBody, noteTitle: note.title)
+                    .tabItem {
+                        Image(systemName: "checklist")
+                }
+                
+                NoteTabView(descriptionText: descriptionText,noteBody: noteBody, noteTitle: note.title)
+                          .tabItem {
+                              Image(systemName: "camera")
+                                  
+                          }
+                      
+                NoteTabView(descriptionText: descriptionText,noteBody: noteBody, noteTitle: note.title)
+                          .tabItem {
+                              Image(systemName: "pencil.tip.crop.circle")
+                          }
+                  
+                NoteTabView(descriptionText: descriptionText,noteBody: noteBody, noteTitle: note.title)
+                          .tabItem {
+                              Image(systemName: "square.and.pencil")
+                          }
+                
+                
+            }
         }
-        
-    }
 }
     
 
 #Preview {
-    TabView(note: Note(title: "boh", subtitle: "a", body: "b"))
+    MainTabView(note: Note(title: "", subtitle: "", body: ""), descriptionText: "",noteBody: "")
 }
